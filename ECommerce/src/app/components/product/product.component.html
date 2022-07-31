@@ -1,0 +1,35 @@
+<div class="container " style="margin-top: 20px;">
+    <table class="table">
+        <thead>
+          <tr>
+           
+            <th scope="col">Product id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">SKU</th>
+            <th scope="col">Description</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Image</th>
+            <th scope="col">Units In Stock</th>
+            <th scope="col">DateCreated</th>
+            <th scope="col">LastUpdated</th>
+            <th scope="col">Category Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products" >
+            <td >{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.sku}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.unitprice}}</td>
+            <td>{{product.imageurl}}</td>
+            <td>{{product.unitsinstock}}</td>
+            <td>{{product.datecreated}}</td>
+            <td>{{product.lastupdated}}</td>
+            <td>{{product.categoryid}}</td>
+           
+          </tr>
+        </tbody>
+    </table>
+    </div>
+    
