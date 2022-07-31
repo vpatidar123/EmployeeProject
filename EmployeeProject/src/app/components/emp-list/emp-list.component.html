@@ -1,0 +1,33 @@
+<div class="container " style="margin-top: 20px;">
+   <h1 style="color:blue; text-align:center;">Employee List</h1>
+    <table class="table " style="background-color: black; color:white;">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Job</th>
+            <th scope="col">Hire Date</th>
+            <th scope="col">ManagerId</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Commission</th>
+            <th scope="col">DepartmentId</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees" [ngClass]="{'green':employee.salary>=25000, 'red':employee.salary<25000}">
+            <td >{{employee.empid}}</td>
+            <td>{{employee.ename}}</td>
+            <td>{{employee.job}}</td>
+            <td>{{employee.hiredate}}</td>
+            <td>{{employee.managerid}}</td>
+            <td>{{employee.salary}}</td>
+            <td>{{employee.commission}}</td>
+            <td>{{employee.deptid}}</td>
+           
+          </tr>
+        </tbody>
+    </table>
+    </div>
+    <button class="btn btn-primary" (click)="addEmployee()">Add New Employee</button>
+    <br><br>
+    <button class="btn btn-primary btn-lg" (click)="home()">Home</button>
