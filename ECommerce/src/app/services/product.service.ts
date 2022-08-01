@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import{ HttpClient } from '@angular/common/http'
+import{ HttpClient, HttpHeaders } from '@angular/common/http'
 import { map, Observable } from 'rxjs';
 import { Product } from '../common/product';
 import { Productcategory } from '../common/productcategory';
@@ -9,8 +9,8 @@ import { Productcategory } from '../common/productcategory';
 })
 export class ProductService {
 
-  private producturl : "http://localhost:8081/api/product" 
-  private productcategoryurl :  "http://localhost:8081/api/productcategory" 
+  private producturl = "http://localhost:8081/api/product" 
+  private productcategoryurl =  "http://localhost:8081/api/productcategory" 
   constructor(private httpClient : HttpClient) { }
 
   getAllProduct() : Observable<Product[]>{
@@ -19,9 +19,22 @@ export class ProductService {
   }
 
   getAllProductCategory() : Observable<Productcategory[]>{
-    console.log(this.httpClient.get<getProductCategoryResponse>(this.productcategoryurl).pipe(map(response=>response._embedded.productcategorys)));
-    return this.httpClient.get<getProductCategoryResponse>(this.productcategoryurl).pipe(map(response=>response._embedded.productcategorys));
+    console.log(this.httpClient.get<getProductCategoryResponse>(this.productcategoryurl).pipe(map(response=>response._embedded.productCategories)));
+    return this.httpClient.get<getProductCategoryResponse>(this.productcategoryurl).pipe(map(response=>response._embedded.productCategories));
   }
+  saveProduct(product : Product) : Observable<Product>{
+    console.log(product)
+
+    const httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization' : 'auth-token',
+        'Access-Control-Allow-origin': '*'
+      })
+    }
+    return this.httpClient.post<Product>(this.producturl,product,httpOptions);
+  }
+  
 }
 
 interface getProductResponse{
@@ -31,6 +44,6 @@ interface getProductResponse{
 }
   interface getProductCategoryResponse{
     _embedded:{
-      productcategorys : Productcategory[]
+      productCategories : Productcategory[]
     }
 }
